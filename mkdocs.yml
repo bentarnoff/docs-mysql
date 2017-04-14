@@ -1,0 +1,36 @@
+repo_name: 'bentarnoff/odb-trouble'
+repo_url: 'https://github.com/bentarnoff/odb-trouble'
+edit_uri: edit/master/docs/
+site_name: ON-DEMAND SERVICES TROUBLESHOOTING GUIDE 
+theme: 'material'
+extra:
+  palette:
+    primary: 'teal'
+    accent: 'deep orange'
+  logo: 'images/pivotal-logo.png'
+extra_css:
+    - 'css/highlight-fix.css'
+    - 'css/solarized_dark.css'
+    - 'css/extras.css'
+    # - 'css/all.css'
+    # - 'css/print.css'
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.codehilite(linenums=true)
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc(permalink=true)
+  - pymdownx.arithmatex
+  - pymdownx.betterem(smart_enable=all)
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist(custom_checkbox=true)
+  - pymdownx.tilde
