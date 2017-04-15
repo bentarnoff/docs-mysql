@@ -1,13 +1,42 @@
-repo_name: 'bentarnoff/odb-trouble'
-repo_url: 'https://github.com/bentarnoff/odb-trouble'
+# repo config
+repo_name: 'bentarnoff/docs-mysql'
+repo_url: 'https://github.com/bentarnoff/docs-mysql'
 edit_uri: edit/master/docs/
-site_name: ON-DEMAND SERVICES TROUBLESHOOTING GUIDE 
+site_name: MySQL for PCF 
 theme: 'material'
+
+# left nav
+pages:
+  - MySQL for PCF:
+    - 'Home': 'index.md'
+    - 'Release Notes': 'release-notes.md'
+    - 'Architecture': 'architecture.md'
+    - 'Known Issues': 'known-issues.md'
+  - Operator Guide:
+    - 'Installing MySQL for PCF': 'installing.md'
+    - 'Configuring MySQL for PCF': 'configuring.md'
+    - 'Service Plans': 'service-plan.md'
+    - 'MySQL Proxy': 'proxy.md'
+    - 'Backups': 'backup.md'
+    - 'Application Security Groups': 'app-security-groups.md'
+    - 'Monitoring': 'monitoring-mysql.md'
+    - 'Troubleshooting': 'troubleshooting.md'
+    - 'Bootstrapping': 'bootstrapping.md'
+    - 'Rotating Credentials': 'credential-rotation.md'
+    - 'Running mysql-diag': 'mysql-diag.md'
+  - Application Developer Guide:
+    - 'Getting Started': 'getting-started.md'
+    - 'When/How to RSU': 'rsu.md'
+
+
+# palette, logo, css, markdown extensions
 extra:
   palette:
     primary: 'teal'
     accent: 'deep orange'
-  logo: 'images/pivotal-logo.png'
+  logo: 'images/common/pivotal-logo.png'
+  feature:
+    tabs: true
 extra_css:
     - 'css/highlight-fix.css'
     - 'css/solarized_dark.css'
