@@ -31,7 +31,7 @@ If quorum has *not* been lost, individual unhealthy nodes should automatically r
             mysql> select * from mysql.user;
             ERROR 1047 (08S01) at line 1: WSREP has not yet prepared node for application use
 
-#### <a id="bootstrapping"></a> Re-bootstrapping the cluster after quorum is lost
+#### <a id="bootstrapping"></a>Re-bootstrapping the cluster after quorum is lost
 
   - The start script will currently bootstrap node 0 only on initial deploy. If bootstrapping is necessary at a later date, it must be done manually. For more information about manually bootstrapping a cluster, see [Bootstrapping Galera](bootstrapping.html).
   - If the single node is bootstrapped, it will create a new one-node cluster that other nodes can join.
@@ -309,25 +309,24 @@ WSREP_SST: [ERROR] #############################################################
 
 In general, if the Interruptor has activated but the Replication Canary has not triggered, it is safe for the node to rejoin the cluster. You can check the health of the remaining nodes in the cluster by following the [Check Replication Status](troubleshooting.html#check-replication) instructions used before scaling from clustered to single-node mode.
 
-<p class='note'><strong>Note</strong>: This topic requires you to run commands from the <a href="http://docs.pivotal.io/pivotalcf/customizing/index.html">Ops Manager Director</a> using the BOSH CLI. Refer to the <a href="http://docs.pivotal.io/pivotalcf/customizing/trouble-advanced.html#prepare">Advanced Troubleshooting with the BOSH CLI</a> topic for more information.</p>
+!!! note 
+    This topic requires you to run commands from the <a href="http://docs.pivotal.io/pivotalcf/customizing/index.html">Ops Manager Director</a> using the BOSH CLI. Refer to the <a href="http://docs.pivotal.io/pivotalcf/customizing/trouble-advanced.html#prepare">Advanced Troubleshooting with the BOSH CLI</a> topic for more information.
 
 1. Follow these instructions to [choose the p-mysql manifest](bootstrapping.html#manifest) with the BOSH CLI.
 
 1. Run `bosh run errand rejoin-unsafe` to force a node to rejoin the cluster:
 
-    <pre class="terminal">
-    $ bosh run errand rejoin-unsafe
+    <p class="terminal">$ bosh run errand rejoin-unsafe
     [...]
     [stdout]
     Started rejoin-unsafe errand ...
     Successfully repaired cluster
     rejoin-unsafe errand completed
-
+    <br>
     [stderr]
     None
-
-    Errand `rejoin-unsafe' completed successfully (exit code 0)
-    </pre>
+    <br>
+    Errand 'rejoin-unsafe' completed successfully (exit code 0)</p>
 
 If the `rejoin-unsafe` errand is not able to cause a node to join the cluster, log into each node which has tripped the Interruptor and follow the [manual rejoin](#manual-rejoin) instructions.
 
@@ -337,5 +336,5 @@ The Interruptor is enabled by default. To disable the Interruptor:
 
 In the **Advanced Options** section, under **Enable optional protections**, un-check  **Prevent node auto re-join**.
 
-  ![Prevent node](prevent-node.png)
+  ![Prevent node](images/prevent-node.png)
 
