@@ -6,7 +6,7 @@ To configure your MySQL service, click the **MySQL for PCF** tile in the Ops Man
 
 ![Configure Settings](images/config-settings.png)
 
-## <a id="az-network"></a>Assign AZs and Networks
+## Assign AZs and Networks
 
 ![Configure AZs and Networks](images/config-az-network.png)
 
@@ -14,7 +14,7 @@ MySQL for PCF supports deployment to multiple availability zones (AZs).
 
 To maximize uptime, deploy a load balancer in front of the SQL Proxy nodes. Please see the note in the [proxy](#proxy) section below. When configuring this load balancer, increase the minimum idle timeout if possible, as many load balancers are tuned for short-lived connections unsuitable for long-running database queries. See the [load balancer configuration instructions](installing/#load-balancer) for details.
 
-## <a id="plans"></a>Service Plans
+## Service Plans
 
 ![Configure Service Plans](images/config-service-plans.png)
 
@@ -23,7 +23,7 @@ Service plans offer developers different versions of the MySQL service. An examp
 !!! note 
     You cannot deploy MySQL for PCF without at least one service plan defined.
 
-## <a id="proxy"></a>Proxy
+## Proxy
 
 ![Configure Proxy](images/config-proxy.png)
 
@@ -38,13 +38,13 @@ To enable their PCF apps to use a MySQL database, developers bind their apps to 
 !!! note 
     To eliminate the first proxy instance as a single point of failure, configure a load balancer to route client connections to all proxy IPs, and configure the MySQL service to give bound applications a hostname or IP address that resolves to the load balancer.
 
-### <a id="proxy-instances"></a>Proxy Count Cannot be Reduced
+### Proxy Count Cannot be Reduced
 
 Once an operator deploys MySQL for PCF, they cannot reduce the number of proxy IPs or proxy instances, and cannot remove the configured IPs from the **Proxy IPs** field.
 
 If the product is initially deployed without proxy IPs, adding IPs to the **Proxy IPs** field can only add additional proxy instances. Scaling down is unpredictably permitted, and the first proxy instance can never be assigned an operator-configured IP.
 
-## <a id="server"></a>MySQL Server Configuration
+## MySQL Server Configuration
 
 ![Configure MySQL Server Configuration](images/config-servers.png)
 
@@ -71,13 +71,13 @@ If the product is initially deployed without proxy IPs, adding IPs to the **Prox
     !!! note 
     Due to the sensitive nature of these logs, they are not transmitted to the syslog server.
 
-## <a id="backups"></a>Backups
+## Backups
 
 ![Configure Backups](images/config-backups.png)
 
 See the [Backups](backup) topic for instructions on configuring backups.
 
-## <a id="advanced"></a>Advanced Options
+## Advanced Options
 
 ![Configure Advanced Options](images/config-advanced.png)
 
@@ -92,14 +92,14 @@ The **Advanced Options** pane lets you configure the following features:
     By default, the Quota Enforcer polls for violators and reformers every 30 seconds. This setting, in seconds, changes how long the quota enforcer pauses between checks.
     Quota Enforcer polling draws minimal resources, but if you want to reduce this load, increase this interval. Be aware, however, that a long Quota Enforcer interval may cause apps to write more data than their pre-determined limit allows.
 
-## <a id="errands"></a>Errands
+## Errands
 
 Two post-deploy errands run by default: the **broker registrar** and the **smoke test**. The broker registrar errand registers the broker with the Cloud Controller and makes the service plan public. The smoke test errand runs basic tests to validate that service instances can be created and deleted, and that apps pushed to Elastic Runtime can be bound and write to MySQL service instances. You can turn both errands on or off in the **Errands** pane under the **Settings** tab.
 
 !!! note 
     The <strong>Errands</strong> pane also shows a <b>broker-deregistrar</b> pre-delete errand. Do not run this errand unless instructed to do so by Support. Ops Manager runs the broker-deregistrar errand to clean up when it uninstalls a tile. Running <code>bosh run errand broker-registrar</code> under any other circumstances deletes user data.
 
-## <a id="resource-config"></a>Resource Config
+## Resource Config
 
 ![Configure Resources](images/config-resources.png)
 
@@ -107,7 +107,7 @@ This pane configures the number, persistent disk capacity, and VM type for all c
 
 Make sure to provision ample resources for your **MySQL Server** nodes. MariaDB servers require sufficient CPU, RAM, and IOPS to promptly respond to client requests. Also note that the MySQL for PCF reserves about 2-3 GB of each instance's persistent disk for service operations use. The rest of the capacity is available for the databases. The MariaDB cluster nodes are configured by default with 100GB of persistent disk. The deployment will fail if this is less than 3GB; we recommend allocating 10GB minimum.
 
-### <a id="switch-topologies"></a> Switch Between Single and HA Topologies
+### Switch Between Single and HA Topologies
 
 To switch your MySQL for PCF service between single-node and high availability (HA) topologies, navigate to the **Resource Config** pane and change the **Instances** settings for the **MySQL Server**, **Proxy**, and **Service Broker** components as shown in this table:
 
@@ -126,6 +126,6 @@ If you scale up to three MySQL nodes, Pivotal recommends spreading them across d
 
 When you change the instance counts for a MySQL service, a top-level property is updated with the new nodes' IP addresses. As BOSH deploys, it will update the configuration and restart all of the MySQL nodes **and** the proxy nodes (to inform them of the new IP addresses as well). Restarting the nodes will cause all connections to that node to be dropped while the node restarts.
 
-## <a id="stemcell"></a>Stemcell
+## Stemcell
 
 This pane uploads the stemcell that you want the service components to run on. Find available stemcells at [Pivotal Network](http://network.pivotal.io).

@@ -2,11 +2,11 @@
 
 This is documentation for the MySQL for Pivotal Cloud Foundry (PCF) service tile. The tile can be downloaded from [Pivotal Network](https://network.pivotal.io/products/p-mysql/).
 
-## <a id='about-mysql'></a>About MySQL##
+## About MySQL##
 
 MySQL is a powerful open-source relational database used by applications since the mid-90s. Developers have relied on MySQL as a first step to storing, processing and sharing data. As its user community has grown, MySQL has become a robust system capable of handling a wide variety of use cases and very significant workloads. Unlike other traditional databases which centralize and consolidate data, MySQL lends itself to dedicated deployment supporting the "shared nothing" context of building applications in the cloud.
 
-## <a id='about-mysql-pcf'></a>About MySQL for PCF ##
+## About MySQL for PCF ##
 
 The MySQL for PCF product delivers a fully managed, "Database as a Service" to Cloud Foundry users. The tile deploys and maintains a MySQL server running a recent release of [MariaDB](http://www.mariadb.org) and [Galera](http://galeracluster.com); a SQL proxy, [Switchboard](https://github.com/cloudfoundry-incubator/switchboard); and a service broker. The tile configures sane defaults for a general-use relational database service.
 
@@ -14,7 +14,7 @@ With MySQL for PCF installed, developers can attach a database to their applicat
 
 You can deploy MySQL for PCF in either single-node or high availability (HA) topology. The HA topology has three MySQL servers, two proxies, two service brokers, and you need to supply a load balancer.
 
-## <a id='snapshot'></a>Product Snapshot ##
+## Product Snapshot ##
 
 Current MySQL for PCF Details
 <div style="line-height: 1; padding-left: 3em">
@@ -31,7 +31,7 @@ Current MySQL for PCF Details
 
 </div>
 
-## <a id='upgrading'></a>Upgrading to the Latest Version ##
+## Upgrading to the Latest Version ##
 
 Consider the following compatibility information before upgrading MySQL.
 
@@ -66,7 +66,7 @@ Prior to upgrading you should:
 
 See the [release notes](release-notes/#1.9.1) for more information about these changes.
 
-## <a id='enterprise-readiness'></a>Enterprise Readiness by Topology ##
+## Enterprise Readiness by Topology ##
 
 The table below shows the enterprise-readiness of each MySQL for PCF topology. Consult the [Known Issues](known-issues.html) topic for information about issues in current releases of MySQL for PCF.
 
@@ -92,7 +92,7 @@ The table below shows the enterprise-readiness of each MySQL for PCF topology. C
 (\*) vSphere and AWS (1.8.0-edge.15 and later)<br>
 (&#x271D;) Requires IPSEC BOSH plug-in
 
-## <a id='ha-limitations'></a>High Availability Limitations ##
+## High Availability Limitations ##
 
 When deployed in HA topology, MySQL for PCF runs three master nodes. This cluster arrangement imposes some limitations that you should be aware of, which do not apply to single-node MySQL database servers.
 
@@ -102,15 +102,15 @@ When deployed in HA topology, MySQL for PCF runs three master nodes. This cluste
 - Round-trip latency between database nodes must be less than five seconds. Latency exceeding this results in a network partition. If more than half of the nodes are partitioned, the cluster loses quorum and become unusable until manually bootstrapped.
 - See also the list of [Known Limitations](https://mariadb.com/kb/en/mariadb/mariadb-galera-cluster-known-limitations/) in MariaDB cluster.
 
-## <a id='release-notes'></a>Release Notes ##
+## Release Notes ##
 
 Consult the [Release Notes](release-notes/) for information about changes between versions of this product.
 
 
-## <a id='known-issues'></a>Known Issues ##
+## Known Issues ##
 
 Consult the [Known Issues](known-issues/) topic for information about issues in current releases of MySQL for PCF.
 
-## <a id='feedback'></a>Feedback ##
+## Feedback ##
 
 Please provide any bugs, feature requests, or questions to [the Pivotal Cloud Foundry Feedback list](mailto:pivotal–cf–feedback@pivotal.io).

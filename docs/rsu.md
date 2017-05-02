@@ -9,7 +9,7 @@ We suggest seeking help to perform a DDL via RSU in the event that you are doing
 !!! note
     If you have a DDL of >2GB, you must use RSU as it will always fail under TOI.
 
-## <a id="Performing-RSU"></a>Steps for Performing an RSU DDL 
+## Steps for Performing an RSU DDL 
 
 The following steps assume that you are using import sql file to perform the data imports. In the event you choose to execute a DDL manually with the mysql client, run the following steps using the client in order.
 

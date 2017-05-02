@@ -2,7 +2,7 @@
 
 This topic describes how to enable, configure, and use backups in MySQL for Pivotal Cloud Foundry (PCF).
 
-## <a id='overview'></a>Overview ##
+## Overview ##
 
 Automated backups have the following features:
 
@@ -12,7 +12,7 @@ Automated backups have the following features:
 - Includes a metadata file that contains the critical details of the backup artifact, including the effective calendar time of the backup
 - Backup artifacts are encrypted within the MySQL for PCF cluster of VMs; unencrypted data is never transported outside of the MySQL for PCF deployment
 
-## <a id='enable-automated'></a>Enable Automated Backups ##
+## Enable Automated Backups ##
 
 You can configure MySQL for PCF to automatically back up its databases to external storage.
 
@@ -34,7 +34,7 @@ To enable automated backups and configure them for options above, perform the fo
 1. If you want to back up all nodes, select the **Back up all nodes** checkbox.
 1. To enable backups using [Ceph](http://docs.ceph.com/docs/master/) or AWS, continue to the [Ceph or AWS](#ceph-aws) section. To enable backups using SCP, continue to the [SCP](#scp) section.
 
-### <a id='ceph-aws'></a>Ceph or AWS
+### Ceph or AWS
 
 To back up your database on Ceph or Amazon Web Services (AWS) S3, perform the following steps:
 
@@ -48,7 +48,7 @@ To back up your database on Ceph or Amazon Web Services (AWS) S3, perform the fo
 1. For **AWS Access Key ID** and **AWS Secret Access Key**, enter your Ceph or AWS credentials. For AWS, Pivotal recommends creating an [IAM](https://aws.amazon.com/iam/) credential that only has access to this bucket.
 1. Click **Save**.
 
-### <a id='scp'></a>SCP
+### SCP
 
 To back up your database using SCP, perform the following steps:
 
@@ -61,7 +61,7 @@ To back up your database using SCP, perform the following steps:
 1. Enter the **SCP Port**. SCP runs on port 22 by default.
 1. Click **Save**.
 
-## <a id="disable-backups"></a>Disable Automated Backups ##
+## Disable Automated Backups ##
 
 To disable automated backups, perform the following steps:
 
@@ -81,7 +81,7 @@ To configure automated backups for MySQL for PCF, perform the following steps:
 1. Navigate to the MySQL for Pivotal Cloud Foundry tile on the Ops Manager Installation Dashboard.
 1. Click **Backups**.
 
-## <a id="understanding-metadata"></a>Understand Backup Metadata ##
+## Understand Backup Metadata ##
 
 Along with each release, MySQL for PCF will upload a `mysql-backup-XXXXXXXXXX.txt` metadata file. 
 
@@ -114,7 +114,7 @@ Within this file, the most important items are the `start_time` and the `server_
 !!! note 
     Both <code>compressed</code> and <code>encrypted</code> show as <code>N</code> in this file, yet the artifact uploaded by MySQL for PCF is both compressed and encrypted. This is a known bug.
 
-## <a id="restoring"></a>Restore a Backup Artifact ###
+## Restore a Backup Artifact ###
 
 MySQL for PCF keeps at least two complete copies of the data. In most cases, if a cluster is still able to connect to persistent storage, you can restore a cluster to health using the [bootstrap process](bootstrapping.html). Before resorting to a database restore, contact [Pivotal Support](https://support.pivotal.io) to ensure your existing cluster is beyond help.
 
@@ -166,11 +166,11 @@ In the event of a total cluster loss, the process to restore a backup artifact t
     1. Click **Save**.
     1. Return to the Ops Manager Installation Dashboard and click **Apply Changes**.
 
-## <a id="manual-process"></a>Perform Manual Backup ##
+## Perform Manual Backup ##
 
 If you do not want to use the automated backups included in MySQL for PCF, you can perform backups manually.
 
-### <a id="manual-ip-creds"></a>Retrieve IP Address and Credentials ###
+### Retrieve IP Address and Credentials ###
 
 Perform the following steps to retrieve the IP address and credentials required for a manual backup:
 
@@ -181,7 +181,7 @@ Perform the following steps to retrieve the IP address and credentials required 
 1. Locate the root password for the MySQL server in the **Credentials** tab.
     ![MySQL Server Root Password](images/mysql-root-password.png)
 
-### <a id="manual-backup"></a>Manual Backup ###
+### Manual Backup ###
 
 Back up your data manually with [mysqldump](https://mariadb.com/kb/en/mariadb/mysqldump/).
   This backup acquires a global read lock on all tables, but does not hold it for the entire duration of the dump.
@@ -192,7 +192,7 @@ To back up all databases in the MySQL deployment, use the `--all-databases` flag
 To back up a single database, specify the database name:
 <p class="terminal">$ mysqldump -u root -p -h $MYSQL\_NODE\_IP $DB\_NAME > user_databases.sql</p>
 
-### <a id="manual-restore"></a>Manual Restore ###
+### Manual Restore ###
 
 The procedure for restoring from a backup is the same whether one or multiple databases were backed up.
 Executing the SQL dump will drop, recreate, and refill the specified databases and tables.

@@ -2,7 +2,7 @@
 
 This topic describes how to rotate credentials for MySQL for Pivotal Cloud Foundry (MySQL for PCF). If you are also using Elastic Runtime MySQL, review the notes in this procedure in order to rotate credentials for both products.
 
-##<a id='prereqs'></a>Prerequisites
+## Prerequisites
 
 To perform the steps below, you need to obtain the following:
 
@@ -21,7 +21,7 @@ To perform the steps below, you need to obtain the following:
     !!! note 
         If you use Elastic Runtime MySQL, you also need your Elastic Runtime MySQL root password. To retrieve your Elastic Runtime MySQL root password, navigate to the Ops Manager <strong>Installation Dashboard</strong> and select <strong>MySQL > Credentials</strong>. Your Elastic Runtime MySQL root password is called <code>Mysql Admin Credentials</code>.
 
-##<a id="rotate"></a>Rotate Your MySQL for PCF Credentials
+## Rotate Your MySQL for PCF Credentials
 
 1. Install the User Account and Authentication (UAA) Command Line Interface (UAAC).
   <p class="terminal">$ gem install cf-uaac</p>

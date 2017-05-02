@@ -4,7 +4,7 @@ MySQL for Pivotal Cloud Foundry (PCF) uses the [Switchboard](https://github.com/
 
 Using a proxy gracefully handles failure of MariaDB nodes, enabling fast, unambiguous failover to other server nodes within the cluster. When a server node becomes unhealthy, the proxy closes all connections to the unhealthy node and re-routes all subsequent connections to a healthy server node.
 
-## <a id="proxy-dashboard"></a>Proxy Dashboard ##
+## Proxy Dashboard ##
 
 The service provides a dashboard where administrators can observe health and metrics for each proxy instance. Metrics include the number of client connections routed to each backend database cluster node.
 
@@ -15,17 +15,17 @@ From a browser, you can open the dashboard for each proxy instance at: `http://p
 
 You need basic auth credentials to access these dashboards. You can find them in the **Credentials** tab of the **MySQL for PCF** tile in Ops Manager.
 
-## <a id="node-health"></a>Node Health ##
+## Node Health ##
 
 When determining where to route traffic, the proxy queries an HTTP healthcheck process running on the database node VM. This healthcheck can return as either healthy or unhealthy, or the node can be unresponsive.
 
-### <a id="healthy"></a>Healthy ###
+### Healthy ###
 
 If the healthcheck process returns HTTP status code `200`, the proxy includes the node in its pool of healthy nodes.
 
 When a new or resurrected nodes rejoin the cluster, the proxy continues to route all connections to the currently active node. In the case of failover, the proxy considers all healthy nodes as candidates for new connections.
 
-### <a id="unhealthy"></a>Unhealthy ###
+### Unhealthy ###
 
 If the healthcheck returns HTTP status code `503`, the proxy considers the node unhealthy.
 
@@ -33,17 +33,17 @@ This happens when a node becomes non-primary, as specified by the [cluster behav
 
 The proxy severs existing connections to newly unhealthy node. The proxy routes new connections to a healthy node, assuming such a node exists. Clients are expected to handle reconnecting on connection failure should the entire cluster become inaccessible.
 
-### <a id="unresponsive"></a>Unresponsive ###
+### Unresponsive ###
 
 If node health cannot be determined due to an unreachable or unresponsive healthcheck endpoint, the proxy considers the node unhealthy. This may happen if there is a network partition or if the VM running the MariaDB node and healthcheck died.
 
-## <a id="proxy-count"></a>Proxy Count ##
+## Proxy Count ##
 
 If the operator sets the total number of proxy hosts to `0` in OpsManager or BOSH deployment manifest, apps connect directly to one MariaDB server node. This makes that node a single point of failure (SPOF) for the cluster.
 
 For high-availability, Pivotal recommends running two proxies, which provides redundancy should one of the proxies fail.
 
-## <a id="switchboard-api"></a> API
+## API
 
 The proxy hosts a JSON API at `proxy-<bosh job index>.p-mysql.<system domain>/v0/`.
 

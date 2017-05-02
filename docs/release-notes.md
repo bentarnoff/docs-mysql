@@ -1,10 +1,10 @@
 # Release Notes
 
-## <a id="1-9-1"></a>1.9.1
+## 1.9.1
 
 **p-mysql 1.9.X requires OpsManager 1.9.0 and above.**
 
-## Deprecation: LOCK TABLES
+### Deprecation: LOCK TABLES
 
 A major limitation of Galera clustering is that table-level locks are not replicated. Previous behavior has been to allow applications to attain a lock only on the current master. This behavior means that applications do not notice this limitation when using `p-mysql`. This can lead to deadlocks when writes happen on different masters. In order to fail fast, starting in p-mysql v1.8.0, new service bindings are not allowed to lock tables. From v1.9.0 forward, all existing Service Instances will no longer have the ability to lock tables. Apps that attempt to lock tables will now see an error of the form:
 
@@ -14,7 +14,7 @@ A major limitation of Galera clustering is that table-level locks are not replic
 > ERROR 1044 (42000): Access denied for user 'uoY64cqdw6qyMtNl'@'%' to database 'cf\_eedd5768\_9c6c\_4388\_ae0b\_dc64f4022bf4'
 ```
 
-## Introducing mysql-diag
+### Introducing mysql-diag
 
 If configured, the monitoring VM comes with a pre-configured `mysql-diag` tool. This tool will give you a snapshot of the current state of the cluster.
 
@@ -22,7 +22,7 @@ We recommend to always run `mysql-diag` before upgrade. Attempting to upgrade wh
 
 The `mysql-diag` tool also works on earlier releases of MySQL for PCF, but it won't be pre-installed and configured. Instructions and a download are located in the [Pivotal Knowledgebase](http://bit.ly/pivotal-mysql-diag).
 
-## MySQL Server Tuning and Defaults
+### MySQL Server Tuning and Defaults
 - Several configuration settings have been moved to a new configuration pane, **MySQL Server Configuration**
   - New field: MySQL Start Timeout (default 60)
     - The minimum amount of time necessary for the MySQL process to start, in seconds. (Introduced in [p-mysql 1.8.1](http://docs.pivotal.io/p-mysql/1-8/release-notes.html#1-8-1).)

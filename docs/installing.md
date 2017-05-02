@@ -2,9 +2,9 @@ Installing MySQL for PCF
 
 This topic explains how to install MySQL for Pivotal Cloud Foundry (PCF).
 
-## <a id="plan"></a>Plan your Deployment ##
+## Plan your Deployment ##
 
-### <a id="network-layout"></a>Network Layout ##
+### Network Layout ##
 
 MySQL for PCF supports deployment to multiple availability zones (AZs) on vSphere only. On other infrastructures, specify only one AZ.
 
@@ -24,7 +24,7 @@ If you deploy the MySQL service on a different network than Elastic Runtime, con
 | Internal/TCP | Galera | 4567 |
 | Internal/TCP | Galera health check | 9200 |
 
-### <a id="load-balancer"></a> Configure a Load Balancer
+### Configure a Load Balancer
 
 For high availability, Pivotal recommends using a load balancer in front of the proxies:
 
@@ -40,7 +40,7 @@ For example, [AWS's Elastic Load Balancer](http://docs.aws.amazon.com/elasticloa
 
 After you install MySQL for PCF, you [assign IPs to the proxy instances](configuring/#proxy) in Ops Manager.
 
-#### <a id="route-53"></a>AWS Route 53 ###
+#### AWS Route 53 ###
 
 Use AWS Route 53 to set up Round Robin DNS across multiple proxy IPs as follows:
 
@@ -54,21 +54,21 @@ Use AWS Route 53 to set up Round Robin DNS across multiple proxy IPs as follows:
 
 Finally, update the manifest property `properties.mysql_node.host` for the cf-mysql-broker job, as described above.
 
-#### <a id="add-lb"></a>Add a Load Balancer to an Existing Installation
+#### Add a Load Balancer to an Existing Installation
 
 If you initially deploy MySQL for PCF v1.5.0 without a load balancer and without proxy IPs configured, you can set up a load balancer later to remove the proxy as a single point of failure. When adding a load balancer to an existing installation, you need to:
 
 - Rebind your apps to receive the hostname or IP that resolves to the load balancer. To rebind: unbind your application from the service instance, bind it again, then restage your application. For more information see [Managing Service Instances with the CLI](http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html). In order to avoid unnecessary rebinding, we recommend configuring a load balancer before deploying v1.5.0.
 - Instead of configuring the proxy IPs in Ops Manager, configure DNS for your load balancer to point to the IPs that were dynamically assigned to your proxies. You can find these IPs in the **Status** tab. Configuration of proxy IPs after the product is deployed with dynamically assigned IPs is not well supported.
 
-### <a id="asg"></a>Create an Application Security Group
+### Create an Application Security Group
 
 Create an [Application Security Group](http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html) (ASG) for MySQL for PCF to allow apps to access to the service. See [Creating Application Security Groups for MySQL](app-security-groups) for instructions.
 
 !!! note 
     The service will not be usable until an ASG is in place.
 
-## <a id="install"></a>Install the MySQL for PCF Tile
+## Install the MySQL for PCF Tile
 
 1. Download the product file from [Pivotal Network](https://network.pivotal.io/products/p-mysql).
 

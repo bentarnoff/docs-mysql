@@ -5,7 +5,7 @@ Operators can configure multiple MySQL service plans in the **Service Plans** pa
 !!! note 
     Prior to v1.8.0, MySQL for PCF supported only one service plan. Upgrading from v1.7.x or earlier renames this plan to  <code>pre-existing-plan</code> by default. To retain the original name of your plan (e.g., "100mb-dev"), edit its <strong>Service Plan name</strong> field in the <strong>Service Plans</strong> pane before clicking <strong>Apply Changes</strong>
 
-## <a id="add-plan"></a>Add a Plan
+## Add a Plan
 
 1. Navigate to the Ops Manager Installation Dashboard and click the **MySQL for PCF** tile.
 1. Click **Service Plans**.
@@ -30,7 +30,7 @@ Changing the **Concurrent Connections Quota** does not affect the connections cu
 !!! note 
     You cannot deploy MySQL for PCF without at least one plan defined. If you want to deploy the MySQL tile so that no plans are visible to developers, define one plan, select <strong>Not available by default</strong> to make the plan private, and only enable access to your own org.
 
-## <a id="modify-plan"></a> Modify a Plan
+## Modify a Plan
 
 To modify an existing service plan, change its configuration values in the Ops Manager **MySQL** tile **Service Plans** pane, click **Save** and then click **Apply Changes** in the Installation Dashboard.
 
@@ -49,7 +49,7 @@ The following rules apply when updating a service instance's plan:
 * You can always update a service instance to a plan with a larger `max_storage_mb`.
 * You can update a service instance to a plan with a smaller `max_storage_mb` only if the current usage is less than the new value. If current usage is greater than the new value, the `update-service` command fails.
 
-## <a id="delete-plan"></a>Delete a Plan
+## Delete a Plan
 
 1. Navigate to the Ops Manager Installation Dashboard and click the **MySQL for PCF** tile.
 1. Click **Service Plans**.
@@ -64,7 +64,7 @@ The following rules apply when updating a service instance's plan:
 
 If no service instances of the deleted plan exist, the plan disappears from the Services Marketplace. See [below](#deleted-plan-instances) for how PCF handles already-running service instances of a deleted plan.
 
-### <a id="deleted-plan-instances"></a>When Deleted Plans Have Running Instances
+### When Deleted Plans Have Running Instances
 
 When running instances exist for a deleted service plan, they continue to run, but developers cannot create new instances of the plan. The service plan displays in the Services Marketplace as "inactive."
 

@@ -2,11 +2,11 @@
 
 This document describes how to use the Replication Canary and Interruptor to monitor your MySQL cluster.
 
-## <a id="repcanary"></a>Replication Canary
+## Replication Canary
 
 MySQL for Pivotal Cloud Foundry (PCF) is a clustered solution that uses replication to  provide benefits such as quick failover and rolling upgrades. This is more complex than a single node system with no replication. MySQL for PCF includes a Replication Canary to help with the increased complexity. The Replication Canary is a long-running monitor that validates that replication is working within the MySQL cluster.
 
-### <a id="overview-canary"></a>How it Works
+### How it Works
 
 The Replication Canary writes to a private dataset in the cluster, and attempts to read that data from each node. It pauses between writing and reading to ensure that the writesets have been committed across each node of the cluster. The private dataset does not use a significant amount of disk capacity.
 
@@ -18,7 +18,7 @@ When replication fails to work properly, the Canary detects that it cannot read 
     !!! failure 
         Malfunctioning replication exposes the cluster to the possibility of data loss. Because of this, both behaviors are enabled by default. It is critical that you contact Pivotal support immediately in the case of replication failure. Support will work with you to determine the nature of the cluster failure and provide guidance regarding a solution.
 
-### <a id="sample-canary"></a>Sample Notification Email
+### Sample Notification Email
 
 If the Canary detects a replication failure, it immediately sends an email through the Elastic Runtime notification service. See the following example:
 
@@ -29,7 +29,7 @@ If the Canary detects a replication failure, it immediately sends an email throu
     {alert-code 417}
     This is an email to notify you that the MySQL service's replication canary has detected an unsafe cluster condition in which replication is not performing as expected across all nodes.
 
-### <a id="access"></a>Cluster Access
+### Cluster Access
 
 Each time the Canary detects cluster replication failure, it instructs all proxies to disable connections to the database cluster. If the replication issue resolves, the Canary detects this and automatically restores client access to the cluster.
 
@@ -45,7 +45,7 @@ You can determine if the Canary disabled cluster access by using the Proxy API. 
   false,"message":"Disabling cluster traffic",
   "lastUpdated":"2016-07-27T05:16:29.197754077Z"}</p>
 
-### <a id="enable-canary"></a>Enable the Replication Canary
+### Enable the Replication Canary
 
 To enable the Replication Canary, follow the instructions below to configure both the Elastic Runtime tile and the MySQL for PCF tile.
 

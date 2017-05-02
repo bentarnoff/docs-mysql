@@ -1,10 +1,10 @@
-Running mysql-diag
+# Running mysql-diag
 
 This topic discusses how to use the `mysql-diag` tool in  MySQL for Pivotal Cloud Foundry (PCF). `mysql-diag` relays the state of your MySQL service and suggests steps to take in the event of a node failure. In conjunction with Pivotal Support, this tool helps expedite the diagnosis and resolution of problems with MySQL for PCF. 
 
 In MySQL for PCF 1.9.0 and later, the `mysql-diag` tool is automatically installed and configured. If you are on a prior version, select the documentation for your version of MySQL for PCF. 
 
-## <a id="run"></a> Run mysql-diag ##
+## Run mysql-diag ##
 1. If this is your first time using `mysql-diag`, follow the instructions within the [Prepare to Use the BOSH CLI](http://docs.pivotal.io/pivotalcf/1-9/customizing/trouble-advanced.html#prepare) topic. If you have completed this step in a prior use of `mysql-diag`, move directly to Step 2.
 
 1. Select either Elastic Runtime or MySQL for PCF as your deployment to troubleshoot. Perform the steps detailed in the [Select a Product Deployment to Troubleshoot](http://docs.pivotal.io/pivotalcf/1-9/customizing/trouble-advanced.html#product) topic.
@@ -15,12 +15,11 @@ In MySQL for PCF 1.9.0 and later, the `mysql-diag` tool is automatically install
 1. Once on the `mysql-monitor` VM type the following command to run `mysql-diag`:
 <p class="terminal">$ mysql-diag</p>
 
-
-## <a id="diag-agent"></a> mysql-diag-agent ##
+## mysql-diag-agent ##
 
 MySQL for PCF 1.9.0 and later will have the `mysql-diag-agent` present. Older versions of MySQL for PCF do not have the `mysql-diag-agent`. If the `mysql-diag-agent` is not available, your output from the `mysql-diag` tool will not include the percentage of Persistent and Ephemeral Disk space used by a Host.
 
-## <a id="healthy"></a> Example Healthy Output ##
+## Example Healthy Output ##
 
 The `mysql-diag` command returns the following message if your canary status is healthy:
  
@@ -58,7 +57,7 @@ Checking disk status of mysql/b2 at 10.0.16.45 ... done
 +------------+-----------+-------------------+----------------------+---------------------------------------+
 </pre>
 
-## <a id="unhealthy"></a> Example Unhealthy Output ##
+## Example Unhealthy Output ##
 
 The `mysql-diag` command returns the following message if your canary status is unhealthy:
 

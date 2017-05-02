@@ -2,7 +2,7 @@
 
 This topic describes the high-level component architecture of the MySQL for Pivotal Cloud Foundry (PCF) service, in both its single-node and HA configurations. It also describes the defaults and other design decisions applied to the service's MariaDB servers and the Galera Cluster that manages them.
 
-## <a id='ha-topology'></a>HA Topology ##
+## HA Topology ##
 
 In HA topology, the MySQL for PCF service uses the following:
 
@@ -18,7 +18,7 @@ If you use multiple availability zones, the MySQL installer spreads MySQL and Pr
 
 ![Quorum](images/topology.png)
 
-### <a id='how-it-works'></a>How It Works
+### How It Works
 
 At any time, MySQL for PCF normally only sends queries to one of the three MySQL servers. The server that receives the queries is the _current master_ node. Galera ensures that the other two servers mirror any changes made on the current master.
 
@@ -28,13 +28,13 @@ When a single node cannot communicate with the rest of the cluster, it stops acc
 
 If two nodes are no longer able to connect to the cluster, quorum is lost and  the cluster becomes inaccessible. To bring the cluster back up, you must restart it manually, as documented in the [bootstrapping](bootstrapping/) topic.
 
-### <a id='avoid-even'></a>Avoid an Even Number of Nodes ###
+### Avoid an Even Number of Nodes ###
 
 Pivotal recommends deploying either one or three MySQL server nodes, avoiding an even number. This prevents a network partition from causing the entire cluster to lose quorum, because neither side has more than half of the nodes.
 
 The minimum number of nodes required to tolerate a single node failure is three. With a two-node cluster, a single node failure causes loss of quorum.
 
-## <a id='server-defaults'></a>MySQL Server Defaults 
+## MySQL Server Defaults 
 
 This section describes the defaults that the MySQL for PCF tile applies to its Galera and MariaDB components.
 
@@ -83,7 +83,7 @@ MySQL for PCF authenticates with user credentials, which does not restrict the h
 
 MySQL for PCF enables `wsrep_load_data_splitting` to split large data imports into separate transactions. This facilitates loading large files into a MariaDB cluster.
 
-## <a id='cluster-scaling'></a>Cluster Scaling Behavior ##
+## Cluster Scaling Behavior ##
 
 This section explains how the MySQL cluster behaves when you change its number of nodes.
 

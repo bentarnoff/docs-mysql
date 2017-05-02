@@ -2,7 +2,7 @@
 
 This topic explains how a developer on PCF can start using MySQL with their apps. It is important to note that MySQL for PCF v1 is different than standard MySQL and has some limitations that you must be aware of.
 
-## <a id="PCF-MySQL-Galera-Limitations"></a>MySQL for PCF v1 Limitations ##
+## MySQL for PCF v1 Limitations ##
 
 - Only InnoDB tables are supported. Writes to other types of tables, such as MyISAM tables will not replicate across the cluster. 
 - Explicit locking is not supported, i.e. `LOCK TABLES`, `FLUSH TABLES tableA WITH READ_LOCK`.
@@ -17,11 +17,11 @@ This topic explains how a developer on PCF can start using MySQL with their apps
 - Max size of a DDL or DML is [limted to 2GB](http://galeracluster.com/documentation-webpages/mysqlwsrepoptions.html#wsrep-max-ws-size)
 - Defining whether the node splits large `Load Data` commands into more [maneageable units] (http://galeracluster.com/documentation-webpages/mysqlwsrepoptions.html#wsrep-load-data-splitting)
 
-## <a id="Checking-for-Limitations"></a>How to Check Your App for Limitations ##
+## How to Check Your App for Limitations ##
 
 Certain types of queries may cause deadlocks. For example, transactions like `UPDATE` or `SELECT ... for UPDATE` when querying rows in opposite order will cause the queries to deadlock. Rewriting these queries and SQL statements will help minimize the deadlocks that your application experiences. One such solution is to query for a bunch of potential rows, then do an update statement. The MySQL documentation provides more information about [InnoDB](http://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks.html) [Deadlocks](http://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks.html) and [Handling InnoDB Deadlocks](http://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html).
 
-## <a id="provision-and-bind"></a>Provisioning and Binding via Cloud Foundry ##
+## Provisioning and Binding via Cloud Foundry ##
 
 As part of installation the product is automatically registered with [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) Elastic Runtime (see [Lifecycle Errands](#lifecycle-errands)). On successful installation, the MySQL service is available to application developers in the Services Marketplace, via the web-based Developer Console or `cf marketplace`. Developers can then provision instances of the service and bind them to their applications:
 
@@ -32,13 +32,13 @@ $ cf restart myapp
 
 For more information about the use of services, see the [Services Overview](http://docs.pivotal.io/pivotalcf/devguide/services/).
 
-## <a id="example-app"></a>Example Application ##
+## Example Application ##
 
 To help application developers get started with MySQL for PCF, we have provided an example application, which can be [downloaded here][example-app]. Instructions can be found in the included README.
 
 [example-app]:mysql-example-app.tgz
 
-## <a id="dashboard"></a>Service Instance Dashboard ##
+## Service Instance Dashboard ##
 
 Cloud Foundry users can access a dashboard for each MySQL service instances via SSO from Apps Manager. The dashboard displays current storage utilization of the database and the plan quota for storage. On the Space page in Apps Manager, users with the Space Developer role will find a **Manage** link next to the instance. Clicking this link will log users into the service dashboard via SSO.
 
@@ -55,7 +55,7 @@ Dashboard: https://p-mysql.sys.acceptance.cf-app.example.com/manage/instances/dd
 
 In this example, the URL to the instance dashboard is `https://p-mysql.sys.acceptance.cf-app.example.com/manage/instances/ddfa6842-b308-4983-a544-50b3d1fb62f0`
 
-## <a id="plugin"></a>Connect to your Database with the MySQL Plugin ##
+## Connect to your Database with the MySQL Plugin ##
 
 You can use the Cloud Foundry Command Line Interface (cf CLI) MySQL plugin to connect to the MySQL databases used by your Cloud Foundry apps. The plugin supports the following actions:
 
